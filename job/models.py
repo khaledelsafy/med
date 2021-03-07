@@ -10,7 +10,13 @@ JOB_TYPE = (
 )
     
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__ (self):
+        return self.name
+
 class Job(models.Model):
+    category = models.ForeignKey(to=Category,on_delete=models.CASCADE)
     title    = models.CharField(max_length=10) 
     job_type = models.CharField(max_length=100,choices=JOB_TYPE)
     description = models.TextField(max_length=1000,default='')
